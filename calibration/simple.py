@@ -93,7 +93,7 @@ def plot_simple_calibration_graph(G):
     #cols += 0.3*np.array([1 if (n[0]==maxnum-1) else 0 for n in G.nodes])
     nx.draw_networkx(G,pos=nx.spring_layout(G))#,node_color=cols)#draw_networkx_edge_labels(G,pos=nx.spring_layout(G))
 
-def compute_simple_predictions(testX,testY,testtrueY,allcals,delta):
+def compute_simple_predictions(testX,allcals,delta,allpcovs):
     """
     testX: An Nx2 or Nx3 matrix.
             First column is time (e.g. seconds or hours since epoch)
@@ -108,19 +108,17 @@ def compute_simple_predictions(testX,testY,testtrueY,allcals,delta):
     Returns preds: a vector of predictions for all the tests.
     Returns res2 and res: temporary returned values for debugging."""
     idx = (testX[:,0]/delta).astype(int)
-    preds = np.full_like(testtrueY,np.NaN)
+    scale = []
+    preds = []
     res = []
-    res2 = []
-    for i,(timeidx,sensorid0,test0,true) in enumerate(zip(idx,testX[:,1],testY[:,0],testtrueY[:,0])):
-        #if test0==true: #no point really in testing on when we know the true value
-        #    continue
-        if np.isnan(true): continue
-        #temp.append(sensorid0)
-        #print((sensorid0,timeidx))
-        scaling = np.exp(allcals[(sensorid0,timeidx)])
-        preds[i] = scaling*test0
-        #print("\nmeasurement:",test0,"\nsensorid:",sensorid0,"\npath:",allsp[(sensorid0,timeidx)],"\nlist:",allcallists[(sensorid0,timeidx)],"\noverall calibration:",allcals[(sensorid0,timeidx)],"\nscaling:",scaling,"\nprediction:",scaling*test0,"\ntruth:",true)
-        res2.append([scaling*test0,true])
-        res.append([test0,true])
-        #print(test1,allcals[(sensorid1,timeidx)],np.exp(-allcals[(sensorid1,timeidx)])*test1,true)
-    return preds,res2,res
+    key = []
+    for i,(timeidx,sensorid0,test0) in enumerate(zip(idx,testX[:,1],testX[:,2])):
+        try:
+            scaling = np.exp(allcals[(sensorid0,timeidx)])
+            scale.append(scaling)
+            preds.append(scaling*test0)  
+            res.append([test0])
+            key.append([(sensorid0,timeidx)])
+        except KeyError as ke:
+            print('Key Not Found:', ke)
+    return res,scale,preds,key
