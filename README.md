@@ -6,7 +6,7 @@ Performs GP calibration on network of colocated sensors.
 Clone this repository:
 
 ```
-git clone https://github.com/lionfish0/calibration.git
+git clone https://github.com/airqo-platform/AirQo-modules.git
 ```
 
 Create environment:
