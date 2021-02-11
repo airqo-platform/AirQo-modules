@@ -1,6 +1,9 @@
 # AirQo DataModel Module
 
 import pandas as pd
+import pyproj
+from pyproj.exceptions import CRSError
+import numpy as np
 
 class BaseDataModel():
     '''Data models are used to standardise the logic for interaction between
@@ -76,11 +79,12 @@ class BaseDataModel():
         df = df[cols]
         return df
 
-class CoordinateTransformModel(BaseDataModel)
+class CoordinateTransformModel(BaseDataModel):
     def __init__(self, *args, **kwargs):
-        super.__init__(self, *args, **kwargs)
+        super().__init__()
 
-    def coordinate_transform_model(
+    def transform(
+    self,
     input_df: pd.DataFrame,
     crs: list,
     input_labels: list,
