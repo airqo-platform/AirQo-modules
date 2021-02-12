@@ -81,7 +81,7 @@ class BaseDataModel():
 
 class CoordinateTransformModel(BaseDataModel):
     def __init__(self, *args, **kwargs):
-        super().__init__()
+        super().__init__(*args, **kwargs)
 
     def transform(
     self,
@@ -92,13 +92,18 @@ class CoordinateTransformModel(BaseDataModel):
     replace_original = False
     )-> pd.DataFrame:
 
-        #test inputs
+        # Test inputs
         all_labels = input_labels + output_labels
-        assert all([isinstance(lbl, str) for lbl in all_labels]) == True, 'input and output labels must be strings'
+        assert all([isinstance(lbl, str) for lbl in all_labels]) == True, (
+            'input and output labels must be strings'
+        )
         assert len(crs) == 2, 'argument takes 2 inputs, crs_from, crs_to'
-        assert len(input_labels) == len(output_labels), 'input and output labels must be of same length'
+        assert len(input_labels) == len(output_labels), (
+            'input and output labels must be of same length'
+        )
 
-        #build pyproj transformer from input coordinate reference systems
+        # Build pyproj transformer from input coordinate reference systems,
+        # raise TypeError if pyproj raises a CRSError
         try:
             crs_from = pyproj.crs.CRS(crs[0])
             crs_to = pyproj.crs.CRS(crs[1])
@@ -106,7 +111,7 @@ class CoordinateTransformModel(BaseDataModel):
             raise TypeError('Not a valid input for pyproj.crs.CRS()')
         transformer = pyproj.transformer.Transformer.from_crs(crs_from, crs_to)
 
-        #get columns corresponding to input labels from dataframe
+        # Get columns corresponding to input labels from dataframe
         inputs = tuple([input_df[lbl].to_numpy() for lbl in input_labels])
         #transform inputs and output to dataframe
         outputs = transformer.transform(*inputs)
@@ -114,13 +119,13 @@ class CoordinateTransformModel(BaseDataModel):
         output_df = pd.DataFrame(outputs, columns=output_labels)
 
         if replace_original == False:
-            #concatenate inputs and outputs
+            # Concatenate inputs and outputs
             df = pd.concat([input_df, output_df], axis = 1)
         else:
-            #copy input df and replace input columns
+            # Copy input df and replace input columns
             df = input_df.copy(deep=True)
             df[input_labels] = output_df[output_labels]
-            #replace output labels
+            # Replace output labels
             columns = dict(zip(input_labels,output_labels))
             df = df.rename(columns=columns)
 
