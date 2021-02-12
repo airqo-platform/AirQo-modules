@@ -93,16 +93,19 @@ class CoordinateTransformModel(BaseDataModel):
         super().__init__(*args, **kwargs)
 
     def transform(
-    self,
-    input_df: pd.DataFrame,
-    crs: list,
-    input_labels: list,
-    output_labels: list,
-    replace_original = False
+        self,
+        input_df: pd.DataFrame,
+        crs: list,
+        input_labels: list,
+        output_labels: list,
+        replace_original = False
     )-> pd.DataFrame:
         '''Converts the coordinate values of columns specified by input_labels
         between CRS's. The order of coordinates is specified by the CRS, not the
-        user.
+        user. For example, EPSG:4326 expects order (lat,lon), or (Y,X) in the
+        Cartesian system and EPSG:3857 expects (X,Y). Therefore if we convert
+        from 4326 to 3857, the transformer takes input in format (lat, lon)
+        and outputs in format (X,Y) by default.
 
         Args:
             input_df: DataFrame containing values to be converted
