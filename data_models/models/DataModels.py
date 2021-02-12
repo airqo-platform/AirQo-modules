@@ -33,7 +33,7 @@ class BaseDataModel():
 
     def swap_df_columns(
         self,
-        df: pd.DataFrame,
+        input_df: pd.DataFrame,
         input_columns: list,
         target_columns = None
     )-> pd.DataFrame:
@@ -45,7 +45,7 @@ class BaseDataModel():
         columns ['z', 'y' 'x']
 
         Args:
-            df: DataFrame containing columns to be swapped
+            input_df: DataFrame containing columns to be swapped
             input_columns: Names of columns to be swapped in the order they
                 appear in df
             target_columns (optional): Names of columns to be swapped in the
@@ -66,7 +66,7 @@ class BaseDataModel():
         assert len(input_columns) == len(target_columns)
 
         # Get column names of df and make deep copy
-        cols = list(df.columns)
+        cols = list(input_df.columns)
         swap_cols = cols.copy()
         # Find indexes of input columns
         idx = [cols.index(col) for col in input_columns]
@@ -76,10 +76,19 @@ class BaseDataModel():
         for i in range(len(idx)):
             cols[idx[i]] = swap_cols[swap[i]]
         # Reorder df
-        df = df[cols]
+        df = input_df[cols]
         return df
 
 class CoordinateTransformModel(BaseDataModel):
+    '''The CoordinateTransformModel is used to convert columns of coordinates
+    using Coordinate Reference Systems (CRS) and pyrpoj.
+
+    Args:
+        *args: Variable length argument list.
+        **kwargs: Arbitrary keyword arguments.
+
+    '''
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -91,7 +100,26 @@ class CoordinateTransformModel(BaseDataModel):
     output_labels: list,
     replace_original = False
     )-> pd.DataFrame:
+        '''Converts the coordinate values of columns specified by input_labels
+        between CRS's. The order of coordinates is specified by the CRS, not the
+        user.
 
+        Args:
+            input_df: DataFrame containing values to be converted
+            crs: List of crs_from, crs_to, the coordinate systems for the transform.
+                These must be valid inputs for pyproj.crs.CRS()
+            input_labels: Names of columns containing coordinates corresponding to
+                crs_from
+            output_labels: Names of columns to be returned containing transformed
+                coordinates
+            replace_original (optional): If set to True, columns corresponding to
+                input_labels are replaced with outputs coordinates, otherwise result
+                is concatenated
+
+        Returns:
+            df: DataFrame with transformed coordinates as included columns
+
+        '''
         # Test inputs
         all_labels = input_labels + output_labels
         assert all([isinstance(lbl, str) for lbl in all_labels]) == True, (
