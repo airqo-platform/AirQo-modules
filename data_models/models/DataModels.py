@@ -59,7 +59,7 @@ class BaseDataModel():
                 not need to be specified and input_columns are swapped
 
         Returns:
-            df: DataFrame with swapped columns
+            output_df: DataFrame with swapped columns
 
         '''
         # Basic assertion tests, user must specify target_columns unless passing
@@ -82,8 +82,8 @@ class BaseDataModel():
         for i in range(len(idx)):
             cols[idx[i]] = swap_cols[swap[i]]
         # Reorder df
-        df = input_df[cols]
-        return df
+        output_df = input_df[cols]
+        return output_df
 
 class CoordinateTransformModel(BaseDataModel):
     '''The CoordinateTransformModel is used to convert columns of coordinates
@@ -126,7 +126,8 @@ class CoordinateTransformModel(BaseDataModel):
                 coordinates, otherwise result is concatenated.
 
         Returns:
-            df: DataFrame with transformed coordinates as included columns
+            output_df: DataFrame with transformed coordinates as included
+                columns
 
         '''
         # Test inputs
@@ -174,6 +175,6 @@ class CoordinateTransformModel(BaseDataModel):
             df[input_labels] = output_df[output_labels]
             # Replace output labels
             columns = dict(zip(input_labels,output_labels))
-            df = df.rename(columns=columns)
+            output_df = df.rename(columns=columns)
 
-        return df
+        return output_df
