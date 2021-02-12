@@ -1,15 +1,1 @@
-_static/
-
-_templates/
-
-conf.py
-
-controllers.rst
-
-DataModels.rst
-
-index.rst
-
-make.bat
-
-Makefile
+_build
