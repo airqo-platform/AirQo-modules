@@ -1,4 +1,11 @@
 # AirQo DataModel Module
+'''DataModels
+
+This module contains DataModels, which provide functionality for interacting
+with remote and internal databases, building local data files and using
+pd.DataFrames to interface between models and data.
+
+'''
 
 import pandas as pd
 import pyproj
@@ -98,7 +105,7 @@ class CoordinateTransformModel(BaseDataModel):
         crs: list,
         input_labels: list,
         output_labels: list,
-        replace_original = False
+        replace_original = None
     )-> pd.DataFrame:
         '''Converts the coordinate values of columns specified by input_labels
         between CRS's. The order of coordinates is specified by the CRS, not the
@@ -109,15 +116,15 @@ class CoordinateTransformModel(BaseDataModel):
 
         Args:
             input_df: DataFrame containing values to be converted
-            crs: List of crs_from, crs_to, the coordinate systems for the transform.
-                These must be valid inputs for pyproj.crs.CRS()
-            input_labels: Names of columns containing coordinates corresponding to
-                crs_from
-            output_labels: Names of columns to be returned containing transformed
-                coordinates
-            replace_original (optional): If set to True, columns corresponding to
-                input_labels are replaced with outputs coordinates, otherwise result
-                is concatenated
+            crs: List of crs_from, crs_to, the coordinate systems for the
+                transform. These must be valid inputs for pyproj.crs.CRS()
+            input_labels: Names of columns containing coordinates corresponding
+                to crs_from
+            output_labels: Names of columns to be returned containing
+                transformed coordinates
+            replace_original (bool, optional): If set to True, columns
+                corresponding to input_labels are replaced with outputs coordinates,
+                otherwise result is concatenated.
 
         Returns:
             df: DataFrame with transformed coordinates as included columns
@@ -126,12 +133,19 @@ class CoordinateTransformModel(BaseDataModel):
         # Test inputs
         all_labels = input_labels + output_labels
         assert all([isinstance(lbl, str) for lbl in all_labels]) == True, (
-            'input and output labels must be strings'
+            'Input and output labels must be strings'
         )
-        assert len(crs) == 2, 'argument takes 2 inputs, crs_from, crs_to'
+        assert len(crs) == 2, 'Argument takes 2 inputs, crs_from, crs_to'
         assert len(input_labels) == len(output_labels), (
-            'input and output labels must be of same length'
+            'Input and output labels must be of same length'
         )
+        if replace_original is not None:
+            assert type(replace_original) == bool, (
+                'Replace_original must be of type bool if argument is used'
+            )
+        else:
+            # Replace original columns by default
+            replace_original = True
 
         # Build pyproj transformer from input coordinate reference systems,
         # raise TypeError if pyproj raises a CRSError
