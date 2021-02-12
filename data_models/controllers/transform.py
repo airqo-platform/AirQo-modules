@@ -2,7 +2,7 @@
 '''DataModel Controllers
 
 This module contains controller functions for interacting with DataModel
-transform functionlity.
+transform functionality.
 
 '''
 
