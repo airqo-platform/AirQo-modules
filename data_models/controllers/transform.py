@@ -1,5 +1,4 @@
-# Controllers for DataModel transforms
-'''DataModel Controllers
+'''Transform Controllers
 
 This module contains controller functions for interacting with DataModel
 transform functionality.

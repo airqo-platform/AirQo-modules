@@ -1,5 +1,4 @@
-# AirQo DataModel Module
-'''DataModels
+'''**DataModels**
 
 This module contains DataModels, which provide functionality for interacting
 with remote and internal databases, building local data files and using
@@ -123,8 +122,8 @@ class CoordinateTransformModel(BaseDataModel):
             output_labels: Names of columns to be returned containing
                 transformed coordinates
             replace_original (bool, optional): If set to True, columns
-                corresponding to input_labels are replaced with outputs coordinates,
-                otherwise result is concatenated.
+                corresponding to input_labels are replaced with output
+                coordinates, otherwise result is concatenated.
 
         Returns:
             df: DataFrame with transformed coordinates as included columns
@@ -154,7 +153,10 @@ class CoordinateTransformModel(BaseDataModel):
             crs_to = pyproj.crs.CRS(crs[1])
         except CRSError:
             raise TypeError('Not a valid input for pyproj.crs.CRS()')
-        transformer = pyproj.transformer.Transformer.from_crs(crs_from, crs_to)
+        transformer = pyproj.transformer.Transformer.from_crs(
+            crs_from,
+            crs_to
+        )
 
         # Get columns corresponding to input labels from dataframe
         inputs = tuple([input_df[lbl].to_numpy() for lbl in input_labels])
