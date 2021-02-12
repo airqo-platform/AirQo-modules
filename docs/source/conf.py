@@ -16,6 +16,17 @@ import sys
 for x in os.walk('../../'):
   sys.path.insert(0, x[0])
 
+# For sphinx.ext.linkcode
+def linkcode_resolve(domain, info):
+    if domain != 'py':
+        return None
+    if not info['module']:
+        return None
+    filename = info['module'].replace('.', '/')
+    url = "https://github.com/airqo-platform/AirQo-modules/tree/add-data-model/%s.py"
+    return url % filename
+
+
 # -- Project information -----------------------------------------------------
 
 project = 'AirQoModules'
@@ -34,7 +45,8 @@ release = '1.0.0'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
-    'sphinx.ext.githubpages'
+    'sphinx.ext.githubpages',
+    'sphinx.ext.linkcode'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
