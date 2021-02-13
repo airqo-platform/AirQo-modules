@@ -5,8 +5,7 @@ Welcome to AirQoModules's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   DataModels
-   controllers
+   data_models/index
 
 Indices and tables
 ==================

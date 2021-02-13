@@ -1,5 +1,5 @@
-Data Model Controllers
-======================
+Controllers
+-----------
 
 .. automodule:: data_models.controllers.transform
   :show-inheritance:
