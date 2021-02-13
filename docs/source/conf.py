@@ -46,8 +46,14 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'sphinx.ext.githubpages',
-    'sphinx.ext.linkcode'
+    'sphinx.ext.linkcode',
+    'autoapi.extension'
 ]
+
+# Set True on new make to create autoapi entries
+autoapi_generate_api_docs = False
+autoapi_add_toctree_entry = False
+autoapi_dirs = ['../../']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
