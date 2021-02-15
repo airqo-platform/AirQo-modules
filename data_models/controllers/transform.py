@@ -6,7 +6,7 @@ transform functionality.
 '''
 
 import pandas as pd
-from models.DataModels import CoordinateTransformModel
+from data_models.models.DataModels import CoordinateTransformModel
 
 def coord_transform(*args, **kwargs)-> pd.DataFrame:
     '''Transforms DataFrame columns from one coordinate system to another, see
