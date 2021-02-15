@@ -1,5 +1,5 @@
-Welcome to AirQoModules's documentation!
-========================================
+AirQo Modules Documentation
+===========================
 
 .. toctree::
    :maxdepth: 2
