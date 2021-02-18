@@ -26,6 +26,5 @@ jobs:
         pip install tox
         tox
     - name: Upload to codecov    
-    - uses: actions/checkout@master
     - uses: codecov/codecov-action@v1
 
