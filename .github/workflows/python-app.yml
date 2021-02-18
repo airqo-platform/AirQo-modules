@@ -25,8 +25,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install tox
         tox
-    - name: Archive code coverage results
-      uses: actions/upload-artifact@v2
+        
+    - uses: actions/checkout@master
+    - uses: codecov/codecov-action@v1
       with:
-        name: code-coverage-report
-        path: htmlcov/
+        files: ./coverage.xml
+        flags: unittests # optional
+
