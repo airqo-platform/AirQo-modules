@@ -5,9 +5,9 @@ name: Build and run Tox
 
 on:
   push:
-    branches: [ add-data-model ]
+    branches: [ staging ]
   pull_request:
-    branches: [ add-data-model ]
+    branches: [ staging ]
 
 jobs:
   build:
