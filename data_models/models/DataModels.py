@@ -126,8 +126,8 @@ class CoordinateTransformModel(BaseDataModel):
                 coordinates, otherwise result is concatenated.
 
         Returns:
-            output_df: DataFrame with transformed coordinates as included
-                columns
+            output_df:
+                DataFrame with transformed coordinates as included columns
 
         '''
         # Test inputs
