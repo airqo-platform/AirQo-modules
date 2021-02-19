@@ -31,6 +31,7 @@ jobs:
         tox
         
   upload_coverage:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Upload to codecov    
