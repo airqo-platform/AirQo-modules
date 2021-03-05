@@ -9,8 +9,7 @@ To install the dev build, clone the repo and use
     pip install -e .
 
 See repo [wiki](https://github.com/airqo-platform/AirQo-modules/wiki) for contributing guidelines and general FAQ.
-
-# Tests
+## Tests
 
 We aim to have a high level of test coverage for code in this repository. Please try and ensure new code has appropriate unit / integration / regression tests. We use the `pytest` runner. To run the tests locally, ensure you have `pytest` installed:
 
@@ -23,10 +22,34 @@ To run the tests:
 ```
 pytest
 ```
+## Documentation
 
-# Currently implemented:
+We used readthedocs to document this repository via `sphinx` and `autodoc`. To build the documentation locally, you must have `sphinx-build`,  `autoapi` and `sphinx_rtd_theme` installed:
 
-## data_models
+```
+pip install sphinx
+pip install sphinx-autoapi
+pip install sphinx_rtd_theme
+```
+
+To build the (html) documentation:
+
+Windows:
+
+```
+cd docs
+make html
+```
+
+Linux:
+
+```
+cd docs
+make -f Makefile html
+```
+
+## Currently implemented:
+### data_models
 
 Data Models contain logic for extracting, transforming and loading data
 
