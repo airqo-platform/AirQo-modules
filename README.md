@@ -1,4 +1,4 @@
-## AirQo Modules.
+# AirQo Modules.
 
 [![Documentation Status](https://readthedocs.org/projects/airqo-modules/badge/?version=latest)](https://airqo-modules.readthedocs.io/en/latest/?badge=latest) [![codecov](https://codecov.io/gh/airqo-platform/AirQo-modules/branch/add-data-model/graph/badge.svg?token=A7AQLMNI9R)](https://codecov.io/gh/airqo-platform/AirQo-modules) [![tests](https://github.com/airqo-platform/AirQo-modules/actions/workflows/python-app.yml/badge.svg)](https://github.com/airqo-platform/AirQo-modules/actions/workflows/python-app.yml)
 
@@ -10,9 +10,23 @@ To install the dev build, clone the repo and use
 
 See repo [wiki](https://github.com/airqo-platform/AirQo-modules/wiki) for contributing guidelines and general FAQ.
 
-## Currently implemented:
+# Tests
 
-### data_models
+We aim to have a high level of test coverage for code in this repository. Please try and ensure new code has appropriate unit / integration / regression tests. We use the `pytest` runner. To run the tests locally, ensure you have `pytest` installed:
+
+```
+pip install pytest
+```
+
+To run the tests:
+
+```
+pytest
+```
+
+# Currently implemented:
+
+## data_models
 
 Data Models contain logic for extracting, transforming and loading data
 
