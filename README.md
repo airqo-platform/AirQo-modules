@@ -4,6 +4,15 @@
 
 Code for reproducing datasets, models and training routines for AirQo prediction models
 
+## Installation
+
+Install [miniconda](https://docs.conda.io/en/latest/miniconda.html) (it also works with [anaconda](https://docs.anaconda.com/anaconda/install/), but we do not need the extra packages). With conda installed, run the following commands to create the virtual environment and activate it:
+
+```
+conda create --force -n AirQo-modules python=3.7
+conda activate AirQo-modules
+```
+
 To install the dev build, clone the repo and use
 
     pip install -e .
