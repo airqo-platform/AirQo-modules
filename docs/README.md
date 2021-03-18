@@ -8,7 +8,9 @@ The [AirQo Platform](https://github.com/airqo-platform) consists of two main rep
 
 Current machine learning software within the platform is in the [predict](https://github.com/airqo-platform/AirQo-api/tree/staging/src/predict) and [calibrate](https://github.com/airqo-platform/AirQo-api/tree/staging/src/calibrate) microservices, built using Python and Flask. These microservices can import additional functionality from modules in this repository e.g. the calibrate microservice imports the [calibration](https://github.com/airqo-platform/AirQo-modules/tree/staging/calibration) Python package.
 
-Process for adding machine learning models to the AirQo platform.
+### Adding Machine Learning Models
+
+The process for adding machine learning models to the AirQo platform is summarised here.
 
 ![add-ml-process](../assets/add-ml-process.svg)
 
@@ -19,7 +21,6 @@ Process for adding machine learning models to the AirQo platform.
 ## Tests
 
 ## Usage
-
 
 ## Documentation
 
