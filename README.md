@@ -4,6 +4,27 @@
 
 Code for reproducing datasets, models and training routines for AirQo prediction models
 
+[![Documentation Status](https://readthedocs.org/projects/airqo-modules/badge/?version=latest)](https://airqo-modules.readthedocs.io/en/latest/?badge=latest)
+
+## Summary
+
+The [AirQo Platform](https://github.com/airqo-platform) consists of two main repositories ([AirQo-frontend](https://github.com/airqo-platform/AirQo-frontend) and [AirQo-api](https://github.com/airqo-platform/AirQo-api)) along with a mongodb database and various other functionality provided by the Google Cloud Platform, including BigQuery.
+
+Current machine learning software within the platform is in the [predict](https://github.com/airqo-platform/AirQo-api/tree/staging/src/predict) and [calibrate](https://github.com/airqo-platform/AirQo-api/tree/staging/src/calibrate) microservices, built using Python and Flask. These microservices can import additional functionality from modules in this repository e.g. the calibrate microservice imports the [calibration](https://github.com/airqo-platform/AirQo-modules/tree/staging/calibration) Python package.
+
+### Currently implemented:
+#### data_models
+
+Data Models contain logic for extracting, transforming and loading data
+
+They link external data (e.g BigQuery), internal data (e.g. csv files) and dataframes which can be used by the model.
+
+### Adding Machine Learning Models
+
+The process for adding machine learning models to the AirQo platform is summarised here.
+
+![add-ml-process](../assets/add-ml-process.svg)
+
 ## Installation
 
 Install [miniconda](https://docs.conda.io/en/latest/miniconda.html) (it also works with [anaconda](https://docs.anaconda.com/anaconda/install/), but we do not need the extra packages). With conda installed, run the following commands to create the virtual environment and activate it:
@@ -33,6 +54,8 @@ pytest
 ```
 ## Documentation
 
+https://airqo-modules.readthedocs.io/
+
 We used readthedocs to document this repository via `sphinx` and `autodoc`. To build the documentation locally, you must have `sphinx-build`,  `autoapi` and `sphinx_rtd_theme` installed:
 
 ```
@@ -57,9 +80,12 @@ cd docs
 make -f Makefile html
 ```
 
-## Currently implemented:
-### data_models
+## Contributing
 
-Data Models contain logic for extracting, transforming and loading data
+## Usage
 
-They link external data (e.g BigQuery), internal data (e.g. csv files) and dataframes which can be used by the model.
+## Continuous Integration
+
+## Static Analysis
+
+## License
