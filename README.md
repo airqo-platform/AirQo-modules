@@ -26,7 +26,7 @@ To install the dev build, clone the repo and use
 See repo [wiki](https://github.com/airqo-platform/AirQo-modules/wiki) for contributing guidelines and general FAQ.
 
 ### Currently implemented:
-#### data_models
+#### [data_models](data_models/)
 
 Data Models contain logic for extracting, transforming and loading data.
 
