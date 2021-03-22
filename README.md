@@ -32,6 +32,8 @@ Data Models contain logic for extracting, transforming and loading data.
 
 They link external data (e.g BigQuery), internal data (e.g. csv files) and dataframes which can be used by the model.
 
+This module is under development and is planned to provide an absraction layer (unifying calls to BigQuery, mongodb and AirQo API) along with utility functions to be shared by multiple machine learning models e.g. GPS co-ordinate transforms.
+
 ### Adding Machine Learning Models
 
 The process for adding machine learning models to the AirQo platform is summarised here.
