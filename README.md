@@ -25,7 +25,12 @@ To install the dev build, clone the repo and use
 
 See repo [wiki](https://github.com/airqo-platform/AirQo-modules/wiki) for contributing guidelines and general FAQ.
 
-### Currently implemented:
+### Currently implemented
+
+#### [calibration](calibration/)
+
+Provides code for sensor calibration which can be imported into online platform services, or offline code (e.g. notebooks) for model development.
+
 #### [data_models](data_models/)
 
 Data Models contain logic for extracting, transforming and loading data.
