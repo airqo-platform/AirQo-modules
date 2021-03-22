@@ -36,8 +36,7 @@ They link external data (e.g BigQuery), internal data (e.g. csv files) and dataf
 
 The process for adding machine learning models to the AirQo platform is summarised here.
 
-![add-ml-process](../assets/add-ml-process.svg)
-
+![add-ml-process](assets/add-ml-process.svg)
 
 ## Tests
 
