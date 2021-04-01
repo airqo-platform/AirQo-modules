@@ -39,6 +39,18 @@ They link external data (e.g BigQuery), internal data (e.g. csv files) and dataf
 
 This module is under development and is planned to provide an absraction layer (unifying calls to BigQuery, mongodb and AirQo API) along with utility functions to be shared by multiple machine learning models e.g. GPS co-ordinate transforms.
 
+#### [prediction_models](prediction_models/)
+
+Prediction models provide predictions for air quality for a given data input. 
+
+When implemented, this module will utilise dataframes provided by the data_model module to provide air quality predictions. Training of these models is abstracted into the trainers module to allow for CI/CD of training routines independent of the model.
+
+#### [trainers](trainers/)
+
+Trainers contain the logic for training machine learning models on a dataset. 
+
+The trainers module is implemented seperately from the prediction models to allow for independent optimisation of training routines and approaches.
+
 ### Adding Machine Learning Models
 
 The process for adding machine learning models to the AirQo platform is summarised here.
