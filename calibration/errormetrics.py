@@ -11,12 +11,21 @@ def MSE(x,y):
     return np.mean((x-y)**2)
 
 def NMSE(x,y):
-    """Normalised Mean Squared Error
+    """Normalised Mean Squared Error, units none (U^2/U^2 = none)
     x = correct
     y = estimate
-    see https://math.stackexchange.com/questions/488964/the-definition-of-nmse-normalized-mean-square-error
+    see better https://en.wikipedia.org/wiki/Coefficient_of_determination
     """
-    return MSE(x,y)/MSE(x,0)
+    return MSE(x,y)/MSE(x,np.mean(x))
+
+def R2(x,y):
+    """Compute the R^2 value.
+    predicting the mean => 0, perfect => 1
+    x = correct
+    y = prediction or estimate
+    From https://en.wikipedia.org/wiki/Coefficient_of_determination
+    """
+    return 1-NMSE(x,y)
 
 def NLPD(x,y,ystd):
     """(normalised) Negative Log Predictive Density
